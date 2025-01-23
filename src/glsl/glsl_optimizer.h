@@ -2,6 +2,8 @@
 #ifndef GLSL_OPTIMIZER_H
 #define GLSL_OPTIMIZER_H
 
+#include <stdbool.h>
+
 /*
  Main GLSL optimizer interface.
  See ../../README.md for more instructions.
@@ -63,12 +65,12 @@ enum glslopt_precision {
 	kGlslPrecCount
 };
 
-glslopt_ctx* glslopt_initialize (enum glslopt_target target);
+struct glslopt_ctx* glslopt_initialize (enum glslopt_target target);
 void glslopt_cleanup (struct glslopt_ctx* ctx);
 
 void glslopt_set_max_unroll_iterations (struct glslopt_ctx* ctx, unsigned iterations);
 
-glslopt_shader* glslopt_optimize (struct glslopt_ctx* ctx, enum glslopt_shader_type type, const char* shaderSource, unsigned options);
+struct glslopt_shader* glslopt_optimize (struct glslopt_ctx* ctx, enum glslopt_shader_type type, const char* shaderSource, unsigned options);
 bool glslopt_get_status (struct glslopt_shader* shader);
 const char* glslopt_get_output (struct glslopt_shader* shader);
 const char* glslopt_get_raw_output (struct glslopt_shader* shader);
