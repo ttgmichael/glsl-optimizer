@@ -172,7 +172,7 @@ let package = Package(
                 "./src/util/ralloc.c",
                 "./src/util/ralloc.h",
             ],
-            publicHeadersPath: "./src/glsl",
+            publicHeadersPath: "./src", // where module.modulemap needs to be
             cxxSettings: [
                 .headerSearchPath("./include"),
                 .headerSearchPath("./src"),
