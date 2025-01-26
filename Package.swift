@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "glsl-optimizer",
     products: [
-        .library(name: "glslopt", type: .static, targets: ["Header"]),
+        .library(name: "glslopt", targets: ["Header"]),
     ],
     dependencies: [],
     targets: [
@@ -172,7 +172,7 @@ let package = Package(
                 "./src/util/ralloc.c",
                 "./src/util/ralloc.h",
             ],
-            publicHeadersPath: "./src",
+            publicHeadersPath: "./src/glsl",
             cxxSettings: [
                 .headerSearchPath("./include"),
                 .headerSearchPath("./src"),
