@@ -6,7 +6,7 @@
 //
 
 #include <stdbool.h>
-#include "glsl_optimizer.h"
+#include "glsl/glsl_optimizer.h"
 
 struct glslopt_ctx* glslopt_initialize (enum glslopt_target target);
 void glslopt_cleanup (struct glslopt_ctx* ctx);
