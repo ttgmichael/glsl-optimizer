@@ -1,71 +1,12 @@
-#pragma once
-#ifndef GLSL_OPTIMIZER_H
-#define GLSL_OPTIMIZER_H
+//
+//  glslopt.h
+//  glsl-optimizer
+//
+//  Created by Michael Tang on 1/26/25.
+//
 
 #include <stdbool.h>
-
-/*
- Main GLSL optimizer interface.
- See ../../README.md for more instructions.
- 
- General usage:
- 
- ctx = glslopt_initialize();
- for (lots of shaders) {
- shader = glslopt_optimize (ctx, shaderType, shaderSource, options);
- if (glslopt_get_status (shader)) {
- newSource = glslopt_get_output (shader);
- } else {
- errorLog = glslopt_get_log (shader);
- }
- glslopt_shader_delete (shader);
- }
- glslopt_cleanup (ctx);
- */
-
-struct glslopt_shader;
-struct glslopt_ctx;
-
-enum glslopt_shader_type {
-    kGlslOptShaderVertex = 0,
-    kGlslOptShaderFragment,
-};
-
-// Options flags for glsl_optimize
-enum glslopt_options {
-    kGlslOptionSkipPreprocessor = (1<<0), // Skip preprocessing shader source. Saves some time if you know you don't need it.
-    kGlslOptionNotFullShader = (1<<1), // Passed shader is not the full shader source. This makes some optimizations weaker.
-};
-
-// Optimizer target language
-enum glslopt_target {
-    kGlslTargetOpenGL = 0,
-    kGlslTargetOpenGLES20 = 1,
-    kGlslTargetOpenGLES30 = 2,
-    kGlslTargetMetal = 3,
-};
-
-// Type info
-enum glslopt_basic_type {
-    kGlslTypeFloat = 0,
-    kGlslTypeInt,
-    kGlslTypeBool,
-    kGlslTypeTex2D,
-    kGlslTypeTex3D,
-    kGlslTypeTexCube,
-    kGlslTypeTex2DShadow,
-    kGlslTypeTex2DArray,
-    kGlslTypeOther,
-    kGlslTypeCount
-};
-enum glslopt_precision {
-    kGlslPrecHigh = 0,
-    kGlslPrecMedium,
-    kGlslPrecLow,
-    kGlslPrecCount
-};
-
-extern "C" {
+#include "glsl_optimizer.h"
 
 struct glslopt_ctx* glslopt_initialize (enum glslopt_target target);
 void glslopt_cleanup (struct glslopt_ctx* ctx);
@@ -90,7 +31,3 @@ void glslopt_shader_get_texture_desc (struct glslopt_shader* shader, int index, 
 // Get *very* approximate shader stats:
 // Number of math, texture and flow control instructions.
 void glslopt_shader_get_stats (struct glslopt_shader* shader, int* approxMath, int* approxTex, int* approxFlow);
-
-}
-
-#endif /* GLSL_OPTIMIZER_H */

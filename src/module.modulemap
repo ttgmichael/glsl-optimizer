@@ -1,5 +1,5 @@
 module glslopt {
-    header "glsl/glsl_optimizer.h"
+    header "glslopt.h"
     
     export *
 }
