@@ -4,6 +4,13 @@
 
 #include <stdbool.h>
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 /*
  Main GLSL optimizer interface.
  See ../../README.md for more instructions.
@@ -65,8 +72,6 @@ enum glslopt_precision {
     kGlslPrecCount
 };
 
-extern "C" {
-
 struct glslopt_ctx* glslopt_initialize (enum glslopt_target target);
 void glslopt_cleanup (struct glslopt_ctx* ctx);
 
@@ -91,6 +96,8 @@ void glslopt_shader_get_texture_desc (struct glslopt_shader* shader, int index, 
 // Number of math, texture and flow control instructions.
 void glslopt_shader_get_stats (struct glslopt_shader* shader, int* approxMath, int* approxTex, int* approxFlow);
 
+#ifdef __cplusplus
 }
+#endif
 
 #endif /* GLSL_OPTIMIZER_H */
